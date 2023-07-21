@@ -7,6 +7,10 @@ WORKDIR /app
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
+# Install required npm modules
+RUN npm install express
+
+
 # Install dependencies
 RUN npm install
 
