@@ -10,6 +10,13 @@ COPY package*.json ./
 # Install required npm modules
 RUN npm install express
 
+# Install required npm modules
+RUN npm install cors
+
+# Install required npm modules
+RUN npm install body-parser jsonwebtoken
+
+RUN npm install jsonwebtoken
 
 # Install dependencies
 RUN npm install
