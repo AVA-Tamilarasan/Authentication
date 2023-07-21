@@ -1,0 +1,25 @@
+GET http://localhost:3000 HTTP/1.1
+
+###
+
+GET http://localhost:4000/api/tasks HTTP/1.1
+
+###
+
+post http://localhost:4000/api/tasks HTTP/1.1
+
+###
+
+post http://localhost:4000/api/tasks HTTP/1.1
+
+###
+
+POST http://localhost:5001/generate-token HTTP/1.1
+
+###
+
+GET  http://localhost:5001/generate-token HTTP/1.1
+
+###
+
+GET  http://localhost:5001/backend HTTP/1.1
