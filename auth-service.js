@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 const port = 5001;
-const secretKey = './private.key'; // Replace this with your actual secret key
+const secretKey = 'my-private-key'; // Replace this with your actual secret key
 
 app.use(cors());
 app.use(bodyParser.json());
