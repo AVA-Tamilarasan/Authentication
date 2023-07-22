@@ -39,10 +39,11 @@ function authenticateToken(req, res, next) {
     next();
   });
 }
-// Sample protected endpoint in the backend
+
 app.get('/backend', authenticateToken, (req, res) => {
   res.json({ message: 'Authorized access to the backend!', user: req.user });
 });
+
 
 app.listen(port, () => {
   console.log(`Authentication service is running on http://localhost:${port}`);
