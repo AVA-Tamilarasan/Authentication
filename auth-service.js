@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
 const app = express();
-const port = 5001;
+
 const secretKey = 'my-private-key'; // Replace this with your actual secret key
 
 app.use(cors());
@@ -40,10 +40,7 @@ function authenticateToken(req, res, next) {
   });
 }
 
-// Sample protected endpoint in the backend
-app.get('/backend', authenticateToken, (req, res) => {
-  res.json({ message: 'Authorized access to the backend!', user: req.user });
-});
+
 
 app.listen(port, () => {
   console.log(`Authentication service is running on http://localhost:${port}`);
