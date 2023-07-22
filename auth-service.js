@@ -30,15 +30,16 @@ function authenticateToken(req, res, next) {
     return res.sendStatus(401);
   }
 
-  jwt.verify(token, secretKey, (err, decoded) => {
-    if (err) {
-      return res.sendStatus(403);
-    }
+ jwt.verify(token, secretKey, (err, decoded) => {
+  if (err) {
+    console.error('Token verification failed:', err);
+    return res.sendStatus(403);
+  }
 
-    req.user = decoded.sub;
-    next();
-  });
-}
+  req.user = decoded.sub;
+  console.log('User authorized:', req.user);
+  next();
+});
 
 app.get('/backend', authenticateToken, (req, res) => {
   res.json({ message: 'Authorized access to the backend!', user: req.user });
