@@ -14,7 +14,7 @@ RUN npm install express
 RUN npm install cors
 
 # Install required npm modules
-RUN npm install body-parser jsonwebtoken
+RUN npm install body-parser 
 
 RUN npm install jsonwebtoken
 
