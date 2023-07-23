@@ -32,6 +32,8 @@ function authenticateToken(req, res, next) {
     return res.sendStatus(401);
   }
 
+  console.log('Received token:', token);
+
   jwt.verify(token, secretKey, (err, decoded) => {
     if (err) {
       console.error('Token verification failed:', err);
@@ -41,8 +43,9 @@ function authenticateToken(req, res, next) {
     req.user = decoded.sub;
     console.log('User authorized:', req.user);
     next();
-  }); // <--- Missing closing brace here
+  });
 }
+
 
 app.get('/backend', authenticateToken, (req, res) => {
   res.json({ message: 'Authorized access to the backend!', user: req.user });
