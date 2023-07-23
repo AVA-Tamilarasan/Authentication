@@ -8,7 +8,7 @@ const app = express();
 
 const secretKey = 'my-private-key'; // Replace this with your actual secret key
 
-app.use(cors());
+app.use(cors({ origin: process.env.MY_FRONTEND_URL }));
 app.use(bodyParser.json());
 
 // Endpoint for generating a token
