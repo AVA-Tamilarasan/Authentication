@@ -36,6 +36,18 @@ function authenticateToken(req, res, next) {
 
   jwt.verify(token, secretKey, (err, decoded) => {
     if (err) {
+      
+      return res.sendStatus(403);
+    }
+
+    req.user = decoded.sub;
+    console.log('User authorized:', req.user);
+    next();
+  });
+}
+
+  jwt.verify(token, secretKey, { algorithms: ['HS256'] }, (err, decoded) => {
+    if (err) {
       console.error('Token verification failed:', err);
       return res.sendStatus(403);
     }
@@ -45,6 +57,7 @@ function authenticateToken(req, res, next) {
     next();
   });
 }
+
 
 
 app.get('/backend', authenticateToken, (req, res) => {
