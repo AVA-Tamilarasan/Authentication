@@ -34,9 +34,9 @@ function authenticateToken(req, res, next) {
 
   console.log('Received token:', token);
 
-  jwt.verify(token, secretKey, (err, decoded) => {
+  jwt.verify(token, secretKey, { algorithms: ['HS256'] }, (err, decoded) => {
     if (err) {
-      
+      console.error('Token verification failed:', err);
       return res.sendStatus(403);
     }
 
@@ -45,6 +45,7 @@ function authenticateToken(req, res, next) {
     next();
   });
 }
+
 
   jwt.verify(token, secretKey, { algorithms: ['HS256'] }, (err, decoded) => {
     if (err) {
