@@ -18,7 +18,8 @@ app.post('/generate-token', (req, res) => {
     return res.status(400).json({ error: 'Public key not provided' });
   }
 
-  const token = jwt.sign({}, secretKey, { subject: publicKey, algorithm: 'HS256' });
+  const token = jwt.sign(secretKey, { subject: publicKey, algorithm: 'HS256' });
+  console.log(token);
   res.json({ token });
 });
 
