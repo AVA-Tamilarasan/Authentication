@@ -56,8 +56,6 @@ function authenticateToken(req, res, next) {
     console.log('User authorized:', req.user);
     next();
   });
-}
-
 
 
 app.get('/backend', authenticateToken, (req, res) => {
