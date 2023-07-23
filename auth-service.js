@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 // Endpoint for generating a token
 app.post('/generate-token', (req, res) => {
   const { publicKey } = req.body;
+  console.log('Received publicKey:', publicKey); // Add this log to see the incoming data
+
   if (!publicKey) {
     return res.status(400).json({ error: 'Public key not provided' });
   }
