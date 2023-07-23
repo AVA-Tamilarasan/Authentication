@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const port = 5001;
 const app = express();
 
-const secretKey = 'my-private-key'; // Replace this with your actual secret key
+const secretKey = process.env.SECRET_KEY; // Replace this with your actual secret key
 
 
 const publicKey = `-----BEGIN PUBLIC KEY-----
