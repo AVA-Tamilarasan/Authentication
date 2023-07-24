@@ -29,6 +29,10 @@ app.post('/generate-token', (req, res) => {
   res.json({ token });
 });
 
+app.get('/backend', authenticateToken, (req, res) => {
+  res.json({ message: 'Authorized access to the backend!', user: req.user });
+});
+
 app.listen(port, () => {
   console.log(`Authentication service is running on http://localhost:${port}`);
 });
