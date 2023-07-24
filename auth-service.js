@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const port = 5001;
 const app = express();
 
-const privateKey = fs.readFileSync('./private_key.pem'); // Use your environment variable here
+const secretKey = Buffer.from(process.env.SECRET_KEY, 'base64'); // Use your environment variable here
 
 app.use(cors());
 app.use(bodyParser.json());
