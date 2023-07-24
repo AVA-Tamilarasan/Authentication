@@ -3,9 +3,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const axios = require('axios');
 const port = 5001;
 const app = express();
-const axios = require('axios'); 
 
 const privateKey = fs.readFileSync('private_key.pem'); // Load the private key from file
 
@@ -28,7 +28,7 @@ app.post('/generate-and-send-token', (req, res) => {
 
   // Send the generated token to the backend
   axios
-    .post('http://127.0.0.1:4000/api/tasks', { token })
+    .post('http://localhost:4000/api/tasks', { token })
     .then(() => {
       console.log('Token sent to the backend successfully');
       res.json({ message: 'Token sent to the backend successfully' });
