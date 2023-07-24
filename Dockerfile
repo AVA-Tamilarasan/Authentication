@@ -22,6 +22,9 @@ RUN npm install jsonwebtoken
 # Install dependencies
 RUN npm install
 
+RUN npm install axios
+
+
 # Copy all authentication service files to the container
 COPY . .
 
