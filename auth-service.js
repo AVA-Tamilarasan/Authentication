@@ -28,7 +28,7 @@ app.post('/generate-and-send-token', (req, res) => {
 
   // Send the generated token to the backend
   axios
-    .post('http://localhost:4000/api/receive-token', { token })
+    .post('http://127.0.0.1:4000/api/receive-token', { token })
     .then(() => {
       console.log('Token sent to the backend successfully');
       res.json({ message: 'Token sent to the backend successfully' });
