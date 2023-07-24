@@ -2,10 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 const port = 5001;
 const app = express();
 
-const secretKey = Buffer.from(process.env.SECRET_KEY, 'base64'); // Use your environment variable here
+const privateKey = fs.readFileSync('private_key.pem'); // Load the private key from file
 
 app.use(cors());
 app.use(bodyParser.json());
