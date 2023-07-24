@@ -29,10 +29,13 @@ app.post('/generate-token', (req, res) => {
   res.json({ token });
 });
 
-// Define the authenticateToken function
 function authenticateToken(req, res, next) {
-  const token = req.header('Authorization');
-  if (!token) return res.status(401).json({ error: 'Access denied. Token not provided.' });
+  const authHeader = req.header('Authorization');
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Access denied. Token not provided.' });
+  }
+
+  const token = authHeader.split(' ')[1];
 
   jwt.verify(token, privateKey, { algorithms: ['RS256'] }, (err, user) => {
     if (err) return res.status(403).json({ error: 'Invalid token.' });
@@ -42,6 +45,7 @@ function authenticateToken(req, res, next) {
     next(); // Call the next middleware or route handler
   });
 }
+
 
 
 app.get('/backend', authenticateToken, (req, res) => {
