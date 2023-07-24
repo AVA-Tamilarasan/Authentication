@@ -29,6 +29,21 @@ app.post('/generate-token', (req, res) => {
   res.json({ token });
 });
 
+// Define the authenticateToken function
+function authenticateToken(req, res, next) {
+  const token = req.header('Authorization');
+  if (!token) return res.status(401).json({ error: 'Access denied. Token not provided.' });
+
+  jwt.verify(token, privateKey, { algorithms: ['RS256'] }, (err, user) => {
+    if (err) return res.status(403).json({ error: 'Invalid token.' });
+
+    // Store the user information in the request object for later use
+    req.user = user;
+    next(); // Call the next middleware or route handler
+  });
+}
+
+
 app.get('/backend', authenticateToken, (req, res) => {
   res.json({ message: 'Authorized access to the backend!', user: req.user });
 });
